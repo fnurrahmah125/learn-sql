@@ -185,3 +185,59 @@ The MAX() function returns the largest value of the selected column
 SELECT MAX(column_name) FROM table_name WHERE condition;
 SELECT MAX(Price) AS LargestPrice FROM Products;
 ```
+
+### COUNT(), AVG(), SUM() ###
+The COUNT() function returns the number of rows that matches a specified criterion
+
+```sql
+SELECT COUNT(column_name) FROM table_name WHERE condition;
+SELECT COUNT(ProductID) FROM Products;
+```
+*NULL values are not counted*
+
+The AVG() function returns the average value of a numeric column
+```sql
+SELECT AVG(column_name) FROM table_name WHERE condition;
+SELECT AVG(Price) FROM Products;
+```
+*NULL values are ignored*
+
+The SUM() function returns the total sum of a numeric column
+```sql
+SELECT SUM(column_name) FROM table_name WHERE condition;
+SELECT SUM(Quantity) FROM OrderDetails;
+```
+*NULL values are ignored*
+
+### LIKE ###
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column
+
+There are two wildcards often used in conjunction with the LIKE operator:
+* The percent sign (%) represents zero, one, or multiple characters
+* The underscore sign (_) represents one, single character
+
+```sql
+SELECT column1, column2, ... FROM table_name WHERE column LIKE pattern;
+```
+
+LIKE Operator  | Description
+------------- | -------------
+WHERE CustomerName LIKE 'a%'    | Finds any values that start with "a"
+WHERE CustomerName LIKE '%a'  | Finds any values that end with "a"
+WHERE CustomerName LIKE '%or%' | Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%' | Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%' | Finds any values that start with "a" and are at least 2 characters in length
+WHERE CustomerName LIKE 'a__%' | Finds any values that start with "a" and are at least 3 characters in length
+WHERE CustomerName LIKE 'a%o' | Finds any values that start with "a" and ends with "o"
+
+### IN ###
+* The IN operator allows you to specify multiple values in a WHERE clause
+* The IN operator is a shorthand for multiple OR conditions
+
+```sql
+SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...);
+SELECT column_name(s) FROM table_name WHERE column_name IN (SELECT STATEMENT);
+```
+
+Source:
+* https://www.w3schools.com/mysql
