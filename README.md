@@ -69,3 +69,23 @@ To specify multiple possible values for a column
 ```sql
 SELECT * FROM Customers WHERE City IN ('Paris','London');
 ```
+
+### AND, OR, NOT ###
+The AND operator displays a record if all the conditions separated by AND are TRUE
+```sql
+SELECT column1, column2, ... FROM table_name WHERE condition1 AND condition2 AND condition3 ...;
+SELECT * FROM Customers WHERE Country = 'Germany' AND City = 'Berlin';
+```
+
+The OR operator displays a record if any of the conditions separated by OR is TRUE
+```sql
+SELECT column1, column2, ... FROM table_name WHERE condition1 OR condition2 OR condition3 ...;
+SELECT * FROM Customers WHERE Country = 'Germany' OR City = 'Berlin';
+```
+
+The NOT operator displays a record if the condition(s) is NOT TRUE
+```sql
+SELECT column1, column2, ... FROM table_name WHERE NOT condition;
+SELECT * FROM Customers WHERE NOT Country = 'Germany';
+```
+
