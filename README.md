@@ -210,11 +210,10 @@ SELECT SUM(Quantity) FROM OrderDetails;
 *NULL values are ignored*
 
 ### LIKE ###
-The LIKE operator is used in a WHERE clause to search for a specified pattern in a column
-
-There are two wildcards often used in conjunction with the LIKE operator:
-* The percent sign (%) represents zero, one, or multiple characters
-* The underscore sign (_) represents one, single character
+* The LIKE operator is used in a WHERE clause to search for a specified pattern in a column
+* There are two wildcards often used in conjunction with the LIKE operator:
+  * The percent sign (%) represents zero, one, or multiple characters
+  * The underscore sign (_) represents one, single character
 
 ```sql
 SELECT column1, column2, ... FROM table_name WHERE column LIKE pattern;
@@ -237,6 +236,19 @@ WHERE CustomerName LIKE 'a%o' | Finds any values that start with "a" and ends wi
 ```sql
 SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...);
 SELECT column_name(s) FROM table_name WHERE column_name IN (SELECT STATEMENT);
+
+SELECT * FROM Customers WHERE Country IN ('Germany', 'France', 'UK');
+SELECT * FROM Customers WHERE Country NOT IN ('Germany', 'France', 'UK');
+SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);
+```
+
+### BETWEEN ###
+* The BETWEEN operator selects values within a given range
+* The values can be numbers, text, or dates
+* The BETWEEN operator is inclusive: begin and end values are included
+
+```sql
+SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
 ```
 
 Source:
