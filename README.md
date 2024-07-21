@@ -292,6 +292,8 @@ WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.C
 ```
 
 ## LeetCode ##
+
+### 1. Combine Two Tables ###
 ![image](https://github.com/user-attachments/assets/82e2d217-7fd0-4eb5-9c34-2ee960cfa65b)
 
 ![image](https://github.com/user-attachments/assets/720629d6-da68-46b3-9e2e-27d8e4e1fd1e)
