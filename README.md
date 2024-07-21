@@ -1,7 +1,10 @@
 # MySQL #
 
 ## List ##
-* [Go to SELECT](#order-by)
+* [SELECT](#select)
+* [WHERE](#where)
+* [AND, OR, NOT](#and-or-not)
+* [LeetCode](#leetcode)
 
 ### SELECT ###
 The SELECT statement is used to select data from a database
@@ -287,6 +290,14 @@ SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
 FROM Customers, Orders
 WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
 ```
+
+## LeetCode ##
+![image](https://github.com/user-attachments/assets/82e2d217-7fd0-4eb5-9c34-2ee960cfa65b)
+
+![image](https://github.com/user-attachments/assets/720629d6-da68-46b3-9e2e-27d8e4e1fd1e)
+
+
+
 
 Source:
 * https://www.w3schools.com/mysql
