@@ -249,6 +249,40 @@ SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);
 
 ```sql
 SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
+
+SELECT * FROM Products WHERE Price BETWEEN 10 AND 20;
+SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20;
+SELECT * FROM Products WHERE Price BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3);
+SELECT * FROM Products WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+SELECT * FROM Products WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+SELECT * FROM Orders WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+```
+
+### Aliases ###
+* Aliases are used to give a table, or a column in a table, a temporary name
+* Aliases are often used to make column names more readable
+* An alias only exists for the duration of that query
+* An alias is created with the AS keyword.
+
+Alias Column Syntax
+```sql
+SELECT column_name AS alias_name FROM table_name;
+
+SELECT CustomerName AS Customer, ContactName AS "Contact Person" FROM Customers;
+SELECT CustomerName, CONCAT_WS(', ', Address, PostalCode, City, Country) AS Address FROM Customers;
+```
+
+Alias Table Syntax
+```sql
+SELECT column_name(s) FROM table_name AS alias_name;
+
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c, Orders AS o
+WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
+
+SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
+FROM Customers, Orders
+WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
 ```
 
 Source:
