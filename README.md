@@ -294,11 +294,23 @@ WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.C
 ## LeetCode ##
 
 ### 1. Combine Two Tables ###
-![image](https://github.com/user-attachments/assets/82e2d217-7fd0-4eb5-9c34-2ee960cfa65b)
+```sql
+SELECT firstName, lastName, city, state
+FROM Person p
+LEFT JOIN Address a
+ON p.personId = a.personId
+```
 
 ![image](https://github.com/user-attachments/assets/720629d6-da68-46b3-9e2e-27d8e4e1fd1e)
 
-
+### 2. Employees Earning More Than Their Managers ###
+```sql
+SELECT e2.name AS Employee 
+FROM employee e1
+INNER JOIN employee e2 ON e1.id = e2.managerID
+WHERE e1.salary < e2.salary;
+```
+![image](https://github.com/user-attachments/assets/b5c497a6-1461-44a3-a035-78fa91dbd98f)
 
 
 Source:
