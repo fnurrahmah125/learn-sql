@@ -4,6 +4,16 @@
 * [SELECT](#select)
 * [WHERE](#where)
 * [AND, OR, NOT](#and-or-not)
+* [ORDER BY](#order-by)
+* [INSERT INTO](#insert-into)
+* [NULL Values](#null-values)
+* [UPDATE](#update)
+* [LIMIT](#limit)
+* [MIN() AND MAX()](#min-and-max)
+* [COUNT(), AVG(), SUM()](#min-and-max)
+* [LIKE](#like)
+* [IN](#in)
+* [BETWEEN](#between)
 * [LeetCode](#leetcode)
 
 ### SELECT ###
