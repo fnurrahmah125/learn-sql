@@ -14,6 +14,7 @@
 * [LIKE](#like)
 * [IN](#in)
 * [BETWEEN](#between)
+* [Aliases](#aliases)
 * [LeetCode](#leetcode)
 
 ### SELECT ###
@@ -299,6 +300,31 @@ WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
 SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
 FROM Customers, Orders
 WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
+```
+
+### Joins ###
+* A JOIN clause is used to combine rows from two or more tables, based on a related column between them
+* INNER JOIN: Returns records that have matching values in both tables
+* LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+* RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+* CROSS JOIN: Returns all records from both tables
+
+![image](https://github.com/user-attachments/assets/47d07018-3d5d-476c-be79-b7ccadc13d23)
+
+#### INNER JOIN ####
+```sql
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+#### LEFT JOIN ####
+```sql
 ```
 
 ## LeetCode ##
