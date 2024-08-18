@@ -48,40 +48,38 @@ MIN() | SELECT MIN(column_name) FROM table_name WHERE condition;
 MIN() | SELECT MIN(Price) AS SmallestPrice FROM Products;
 MAX() | SELECT MAX(column_name) FROM table_name WHERE condition;
 MAX() | SELECT MAX(Price) AS LargestPrice FROM Products;
-
-
-### COUNT(), AVG(), SUM() ###
-The COUNT() function returns the number of rows that matches a specified criterion
-
-```sql
-SELECT COUNT(column_name) FROM table_name WHERE condition;
-SELECT COUNT(ProductID) FROM Products;
-```
-*NULL values are not counted*
-
-The AVG() function returns the average value of a numeric column
-```sql
-SELECT AVG(column_name) FROM table_name WHERE condition;
-SELECT AVG(Price) FROM Products;
-```
-*NULL values are ignored*
-
-The SUM() function returns the total sum of a numeric column
-```sql
-SELECT SUM(column_name) FROM table_name WHERE condition;
-SELECT SUM(Quantity) FROM OrderDetails;
-```
-*NULL values are ignored*
+COUNT() | SELECT COUNT(column_name) FROM table_name WHERE condition;
+COUNT() | SELECT COUNT(ProductID) FROM Products;
+AVG() | SELECT AVG(column_name) FROM table_name WHERE condition;
+AVG() | SELECT AVG(Price) FROM Products;
+SUM() | SELECT SUM(column_name) FROM table_name WHERE condition;
+SUM() | SELECT SUM(Quantity) FROM OrderDetails;
+LIKE  | SELECT column1, column2, ... FROM table_name WHERE column LIKE pattern;
+IN    | SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...);
+IN    | SELECT column_name(s) FROM table_name WHERE column_name IN (SELECT STATEMENT);
+IN    | SELECT * FROM Customers WHERE Country IN ('Germany', 'France', 'UK');
+IN    | SELECT * FROM Customers WHERE Country NOT IN ('Germany', 'France', 'UK');
+IN    | SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);
+BETWEEN | SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
+BETWEEN | SELECT * FROM Products WHERE Price BETWEEN 10 AND 20;
+BETWEEN | SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20;
+BETWEEN | SELECT * FROM Products WHERE Price BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3);
+BETWEEN | SELECT * FROM Products WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+BETWEEN | SELECT * FROM Products WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+BETWEEN | SELECT * FROM Orders WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+ALIASES | SELECT column_name AS alias_name FROM table_name;
+ALIASES | SELECT CustomerName AS Customer, ContactName AS "Contact Person" FROM Customers;
+ALIASES | SELECT CustomerName, CONCAT_WS(', ', Address, PostalCode, City, Country) AS Address FROM Customers;
+ALIASES | SELECT column_name(s) FROM table_name AS alias_name;
+ALIASES | SELECT o.OrderID, o.OrderDate, c.CustomerName FROM Customers AS c, Orders AS o WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
+INNER JOIN | SELECT column_name(s) FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;
+INNER JOIN | SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 
 ### LIKE ###
 * The LIKE operator is used in a WHERE clause to search for a specified pattern in a column
 * There are two wildcards often used in conjunction with the LIKE operator:
   * The percent sign (%) represents zero, one, or multiple characters
   * The underscore sign (_) represents one, single character
-
-```sql
-SELECT column1, column2, ... FROM table_name WHERE column LIKE pattern;
-```
 
 LIKE Operator  | Description
 ------------- | -------------
@@ -93,62 +91,6 @@ WHERE CustomerName LIKE 'a_%' | Finds any values that start with "a" and are at 
 WHERE CustomerName LIKE 'a__%' | Finds any values that start with "a" and are at least 3 characters in length
 WHERE CustomerName LIKE 'a%o' | Finds any values that start with "a" and ends with "o"
 
-### IN ###
-* The IN operator allows you to specify multiple values in a WHERE clause
-* The IN operator is a shorthand for multiple OR conditions
-
-```sql
-SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...);
-SELECT column_name(s) FROM table_name WHERE column_name IN (SELECT STATEMENT);
-
-SELECT * FROM Customers WHERE Country IN ('Germany', 'France', 'UK');
-SELECT * FROM Customers WHERE Country NOT IN ('Germany', 'France', 'UK');
-SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);
-```
-
-### BETWEEN ###
-* The BETWEEN operator selects values within a given range
-* The values can be numbers, text, or dates
-* The BETWEEN operator is inclusive: begin and end values are included
-
-```sql
-SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
-
-SELECT * FROM Products WHERE Price BETWEEN 10 AND 20;
-SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20;
-SELECT * FROM Products WHERE Price BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3);
-SELECT * FROM Products WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
-SELECT * FROM Products WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
-SELECT * FROM Orders WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
-```
-
-### Aliases ###
-* Aliases are used to give a table, or a column in a table, a temporary name
-* Aliases are often used to make column names more readable
-* An alias only exists for the duration of that query
-* An alias is created with the AS keyword.
-
-Alias Column Syntax
-```sql
-SELECT column_name AS alias_name FROM table_name;
-
-SELECT CustomerName AS Customer, ContactName AS "Contact Person" FROM Customers;
-SELECT CustomerName, CONCAT_WS(', ', Address, PostalCode, City, Country) AS Address FROM Customers;
-```
-
-Alias Table Syntax
-```sql
-SELECT column_name(s) FROM table_name AS alias_name;
-
-SELECT o.OrderID, o.OrderDate, c.CustomerName
-FROM Customers AS c, Orders AS o
-WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
-
-SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
-FROM Customers, Orders
-WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;
-```
-
 ### Joins ###
 * A JOIN clause is used to combine rows from two or more tables, based on a related column between them
 * INNER JOIN: Returns records that have matching values in both tables
@@ -157,22 +99,6 @@ WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.C
 * CROSS JOIN: Returns all records from both tables
 
 ![image](https://github.com/user-attachments/assets/47d07018-3d5d-476c-be79-b7ccadc13d23)
-
-#### INNER JOIN ####
-```sql
-SELECT column_name(s)
-FROM table1
-INNER JOIN table2
-ON table1.column_name = table2.column_name;
-
-SELECT Orders.OrderID, Customers.CustomerName
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
-```
-
-#### LEFT JOIN ####
-```sql
-```
 
 ## LeetCode ##
 
